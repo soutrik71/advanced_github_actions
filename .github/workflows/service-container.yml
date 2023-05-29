@@ -46,5 +46,11 @@ jobs:
           python-version: "3.x"
 
       - name: install pip dependecies
-        run: pip install ./Ch01/01_02-service-containers/requirements.txt
+        run: pip install -r ./Ch01/01_02-service-containers/requirements.txt
+
+      - name: python test
+        run: |
+          python
+          print("Hello, I am in python console")
+
 
