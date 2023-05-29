@@ -1,0 +1,40 @@
+name: scheduled jobs
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+
+jobs:
+  date:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a tag for the archive
+        run: echo "::set-output name=TAG::$(date +%F)"
+        id: tag
+
+      - name: Starting the nightly build for ${{ steps.tag.outputs.TAG }}
+        run: echo "The tag is ${{ steps.tag.outputs.TAG }}"
+
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Create the artifact
+        run: tar -cvf nightly-${{ steps.tag.outputs.TAG }}.tar ./*
+
+      - name: Upload the artifact to local
+        uses: actions/upload-artifact@v2
+        with:
+          name: nightly-${{ steps.tag.outputs.TAG }}.tar
+          path: nightly-${{ steps.tag.outputs.TAG }}.tar
+
+      - name: upload the artifact to azure blob
+        uses: fixpoint/azblob-upload-artifact@v4
+        with:
+          connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+          name: githubactions_artifact
+          path: nightly-${{ steps.tag.outputs.TAG }}.tar
