@@ -20,11 +20,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
-
     # setup conatiner for postgres sql
     services:
       postgres:
@@ -40,3 +35,16 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: setup python executable
+        uses: actions/python@v3
+        with:
+          python-version: "3.x"
+
+      - name: install pip dependecies
+        run: pip install ./Ch01/01_02-service-containers/requirements.txt
+
