@@ -20,6 +20,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
 
     # setup conatiner for postgres sql
     services:
