@@ -53,3 +53,12 @@ jobs:
           import os
           print("Hello, I am in python console")
         shell: python
+
+      - name: seed postgres sql db
+        run: python ./ch01/01_02-service-containers/seed_database.py
+        env:
+          DATABASE_HOST: localhost
+          DATABASE_NAME: ${{ env.DATABASE_NAME }}
+          DATABASE_USER: ${{ env.DATABASE_USER }}
+          DATABASE_PASS: ${{ env.DATABASE_PASS }}
+          DATABASE_PORT: ${{ env.DATABASE_PORT }}
