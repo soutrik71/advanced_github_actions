@@ -41,16 +41,15 @@ jobs:
         uses: actions/checkout@v2
 
       - name: setup python executable
-        uses:  actions/setup-python@v4
+        uses: actions/setup-python@v4
         with:
           python-version: "3.x"
 
       - name: install pip dependecies
         run: pip install -r ./Ch01/01_02-service-containers/requirements.txt
 
-      - name: python test
+      - name: Inline python step
         run: |
-          python
+          import os
           print("Hello, I am in python console")
-
-
+        shell: python
