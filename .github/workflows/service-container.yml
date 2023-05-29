@@ -55,7 +55,7 @@ jobs:
         shell: python
 
       - name: seed postgres sql db
-        run: python Ch01\01_02-service-containers\seed_database.py
+        run: python Ch01/01_02-service-containers/seed_database.py
         env:
           DATABASE_HOST: localhost
           DATABASE_NAME: ${{ env.DATABASE_NAME }}
