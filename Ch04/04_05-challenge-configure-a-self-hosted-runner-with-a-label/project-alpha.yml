@@ -1,0 +1,10 @@
+name: Test Project Alpha Runner
+
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: project-alpha
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
