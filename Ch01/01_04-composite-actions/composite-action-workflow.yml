@@ -6,6 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       # REPLACE THE FOLLOWING WITH THE PROPER VALUES
       # - YOUR_GITHUB_USER_NAME
       # - YOUR_COMPOSITE_ACTION_REPO_NAME

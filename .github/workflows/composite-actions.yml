@@ -1,0 +1,18 @@
+name: composite action workflow
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Hello job
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - id: CustomAction
+        uses: soutrik71/composite_actions@main
+        with:
+          whom_to_greet: Jojo
+
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
